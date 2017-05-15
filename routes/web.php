@@ -15,4 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/medicamentos','MedicamentosController@all');
+
+Route::resource('medicamentos', 'MedicamentosController');
