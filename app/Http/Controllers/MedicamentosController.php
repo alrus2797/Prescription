@@ -14,28 +14,26 @@ class MedicamentosController extends Controller
      */
     public function index()
     {
-        //
+        $todos = Medicamento::all();
+        return view('Medicamentos.index',['todos'=>$todos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('Medicametos.create');
+        return view('Medicamentos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $nuevo = new Medicamento;
+        $nuevo->nombre = $request->nombre;
+        $nuevo->mg = $request->mg;
+        $nuevo->receta = $request->receta;
+        $nuevo->fechaVenc = $request->fecha_venc;
+        $nuevo->efectoSecundarios = $request->efectoSecundarios;
+        $nuevo->save();
+
+        return response()->json(['true'=> true]);
     }
 
     /**

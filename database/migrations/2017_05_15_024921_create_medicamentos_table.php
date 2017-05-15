@@ -18,8 +18,8 @@ class CreateMedicamentosTable extends Migration
             $table->string('nombre');
             $table->float('mg');
             $table->boolean('receta');
-            $table->date('fecha_venc');
-            $table->string('side-effects');
+            $table->date('fechaVenc');
+            $table->string('efectoSecundarios');
             $table->timestamps();
         });
     }
