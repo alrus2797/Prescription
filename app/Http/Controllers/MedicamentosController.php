@@ -25,11 +25,13 @@ class MedicamentosController extends Controller
 
     public function store(Request $request)
     {
+        //dd($request);
+
         $nuevo = new Medicamento;
         $nuevo->nombre = $request->nombre;
         $nuevo->mg = $request->mg;
         $nuevo->receta = $request->receta;
-        $nuevo->fechaVenc = $request->fecha_venc;
+        $nuevo->fechaVenc = $request->fechaVenc;
         $nuevo->efectoSecundarios = $request->efectoSecundarios;
         $nuevo->save();
 

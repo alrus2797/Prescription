@@ -2,11 +2,11 @@ class CreateForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        nombre : 'fdsa',
-        mg : 'asfd',
-        receta : '',
-        fechaVenc :'adf',
-        efectoSecundarios :'asfd'
+        nombre : '',
+        mg : '',
+        receta : true,
+        fechaVenc :'',
+        efectoSecundarios :''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -14,7 +14,15 @@ class CreateForm extends React.Component {
   }
 
   handleSubmit(event){
+    var algo;
+    axios.get("{{ route('medicina.show', ['id' => 1]) }}").then(function (response) {
+    algo = response;
+    })
+    .catch(function (error) {
+    algo= error;
+    });
 
+    console.log(algo);
   }
 
 
@@ -43,7 +51,7 @@ class CreateForm extends React.Component {
             <div className="field">
             <label className="label">Mg</label>
             <p className="control">
-            <input className="input" type="number" name="mg" />
+            <input className="input" type="number" name="mg" value={this.state.mg} onChange={this.handleChange} />
             </p>
             </div>
 
@@ -58,14 +66,14 @@ class CreateForm extends React.Component {
             <div className="field">
             <label className="label">Fecha de Vencimiento</label>
             <p className="control">
-            <input className="date" type="date" name="fechaVenc" />
+            <input className="date" type="date" name="fechaVenc" value={this.state.fechaVenc} onChange={this.handleChange} />
             </p>
             </div>
 
             <div className="field">
             <label className="label">Efectos Secundarios</label>
             <p className="control">
-            <textarea className="textarea" name="efectoSecundarios"  />
+            <textarea className="textarea" name="efectoSecundarios" value={this.state.efectoSecundarios} onChange={this.handleChange} />
             </p>
             </div>  
 

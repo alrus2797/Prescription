@@ -15,11 +15,12 @@ Route::get('/', function () {
     return view('index');
 });
 
-
+/*
 Route::group(['prefix'=>'medicamentos'],function(){
 	Route::get('update',function(){
 		return view('Medicamentos.update');
 	});
 });
+*/
 Route::resource('medicamentos', 'MedicamentosController');
 
