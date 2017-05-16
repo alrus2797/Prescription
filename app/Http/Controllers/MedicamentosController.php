@@ -15,7 +15,7 @@ class MedicamentosController extends Controller
     public function index()
     {
         $todos = Medicamento::all();
-        return view('Medicamentos.index',['todos'=>$todos]);
+        return view('Medicamentos.todos',['todos'=>$todos]);
     }
 
     public function create()
