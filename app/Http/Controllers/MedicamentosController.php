@@ -42,9 +42,10 @@ class MedicamentosController extends Controller
      * @param  \App\Medicamento  $medicamento
      * @return \Illuminate\Http\Response
      */
-    public function show(Medicamento $medicamento)
+    public function show($id)  //Medicamento $medicamento
     {
-        //
+        $medicamento = Medicamento::find($id);
+        return view('Medicamentos.show',['medicamento'=>$medicamento]);
     }
 
     /**
@@ -53,9 +54,11 @@ class MedicamentosController extends Controller
      * @param  \App\Medicamento  $medicamento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Medicamento $medicamento)
+    public function edit($id)
     {
-        //
+        $medicamento = Medicamento::find($id);
+        $medicamentos = Medicamento::all();
+        return view('Medicamento.edit',['medicamento'=>$medicamento,'medicamentos'=>$medicamentos]);
     }
 
     /**
@@ -65,9 +68,19 @@ class MedicamentosController extends Controller
      * @param  \App\Medicamento  $medicamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Medicamento $medicamento)
+    public function update(Request $request, $id)
     {
-        //
+        $medicamento = Medicamento::find($id);
+
+        $medicamento->nombre = $request->nombre;
+        $medicamento->mg = $request->mg;
+        $medicamento->receta = $request->receta;
+        $medicamento->fechaVenc = $request->fecha_venc;
+        $medicamento->efectoSecundarios = $request->efectoSecundarios;
+        $medicamento->save();
+
+        return redirect('Medicamento/'.$id);
+
     }
 
     /**
