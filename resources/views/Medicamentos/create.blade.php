@@ -3,8 +3,12 @@
 <script src="{{asset('js/babel.min.js')}}"></script>
 <script src="{{asset('js/axios.min.js')}}"></script>
 
-Formulario
+<link rel="stylesheet" type="text/css" href="{{asset('css/bulma.min.css')}}">
+
+<div class="container">
+<h1 class="title">Crear Medicamento</h1>
 <div id="root"></div>
+</div>
 
 <script type="text/babel" src="{{asset('medicamentos/CreateForm.js')}}">
 </script>
