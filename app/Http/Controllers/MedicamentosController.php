@@ -42,9 +42,8 @@ class MedicamentosController extends Controller
      * @param  \App\Medicamento  $medicamento
      * @return \Illuminate\Http\Response
      */
-    public function show($id)  //Medicamento $medicamento
+    public function show( Medicamento $medicamento )
     {
-        $medicamento = Medicamento::find($id);
         return view('medicamentos.show',['medicamento'=>$medicamento]);
     }
 
@@ -54,11 +53,9 @@ class MedicamentosController extends Controller
      * @param  \App\Medicamento  $medicamento
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit( Medicamento $medicamento )
     {
-        $medicamento = Medicamento::find($id);
-        $medicamentos = Medicamento::all();
-        return view('medicamentos.edit',['medicamento'=>$medicamento,'medicamentos'=>$medicamentos]);
+        return view('medicamentos.edit',['medicamento'=>$medicamento]);
     }
 
     /**
@@ -68,9 +65,8 @@ class MedicamentosController extends Controller
      * @param  \App\Medicamento  $medicamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Medicamento $medicamento)
     {
-        $medicamento = Medicamento::find($id);
 
         $medicamento->nombre = $request->nombre;
         $medicamento->mg = $request->mg;
@@ -89,8 +85,18 @@ class MedicamentosController extends Controller
      * @param  \App\Medicamento  $medicamento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Medicamento $medicamento)
+
+    public function deleteGet(Medicamento $medicamento)
     {
-        //
+        if($medicamento == null)
+            echo "No se encontró el medicamento";
+        return view('medicamentos.destroy',['medicamento'=>$medicamento]);
+    }
+
+    public function destroy(Request $request)
+    {
+        $eliminado = Medicamento::find($request->id);
+        $eliminado -> delete();
+        return redirect('medicamentos');   
     }
 }
