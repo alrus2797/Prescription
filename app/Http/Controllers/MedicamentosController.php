@@ -45,7 +45,7 @@ class MedicamentosController extends Controller
     public function show($id)  //Medicamento $medicamento
     {
         $medicamento = Medicamento::find($id);
-        return view('Medicamentos.show',['medicamento'=>$medicamento]);
+        return view('medicamentos.show',['medicamento'=>$medicamento]);
     }
 
     /**
@@ -58,7 +58,7 @@ class MedicamentosController extends Controller
     {
         $medicamento = Medicamento::find($id);
         $medicamentos = Medicamento::all();
-        return view('Medicamento.edit',['medicamento'=>$medicamento,'medicamentos'=>$medicamentos]);
+        return view('medicamentos.edit',['medicamento'=>$medicamento,'medicamentos'=>$medicamentos]);
     }
 
     /**
@@ -79,7 +79,7 @@ class MedicamentosController extends Controller
         $medicamento->efectoSecundarios = $request->efectoSecundarios;
         $medicamento->save();
 
-        return redirect('Medicamento/'.$id);
+        return redirect('medicamento/'.$id);
 
     }
 
